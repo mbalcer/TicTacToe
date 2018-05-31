@@ -37,10 +37,32 @@
             <Button fx:id="twoTwo" mnemonicParsing="false" onAction="#clickTwoTwo" prefHeight="125.0" prefWidth="133.0" styleClass="btn" stylesheets="@../../designTicTacToe.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Label fx:id="score" layoutX="139.0" layoutY="14.0" text="0:0">
+      <Label layoutX="168.0" layoutY="14.0" text=":">
          <font>
             <Font name="System Bold" size="50.0" />
          </font>
       </Label>
+      <Label fx:id="scoreO" layoutX="182.0" layoutY="14.0" text="0">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="scoreX" layoutX="139.0" layoutY="14.0" text="0">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="score21" layoutX="94.0" layoutY="14.0" text="X">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="score211" layoutX="219.0" layoutY="14.0" text="O">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="131.0" layoutY="79.0" text="Kolej na:" />
+      <Label fx:id="queue" layoutX="192.0" layoutY="79.0" text="X" />
    </children>
 </Pane>

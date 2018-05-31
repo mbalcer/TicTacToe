@@ -6,7 +6,11 @@ import javafx.scene.control.Label;
 
 public class Controller {
     @FXML
-    Label score;
+    Label scoreX;
+    @FXML
+    Label scoreO;
+    @FXML
+    Label queue;
 
     @FXML
     Button zeroZero;
@@ -27,18 +31,72 @@ public class Controller {
     @FXML
     Button twoTwo;
 
-    private String queue = "X";
+    private String queueS = "X";
+    private int howMove = 1;
 
     private void changeQueue() {
-        if(queue=="X")
-            queue = "O";
-        else
-            queue = "X";
+        if (queueS == "X") {
+            queueS = "O";
+            queue.setText("O");
+        }
+        else {
+            queueS = "X";
+            queue.setText("X");
+        }
     }
     private void changeText(Button btn) {
-        btn.setText(queue);
+        btn.setText(queueS);
         changeQueue();
         btn.setDisable(true);
+        checkToWin();
+    }
+    private void resetButton(Button btn) {
+        btn.setDisable(false);
+        btn.setText("");
+    }
+    private void resetGame() {
+        resetButton(zeroZero);
+        resetButton(zeroOne);
+        resetButton(zeroTwo);
+        resetButton(oneZero);
+        resetButton(oneOne);
+        resetButton(oneTwo);
+        resetButton(twoZero);
+        resetButton(twoOne);
+        resetButton(twoTwo);
+        howMove=1;
+    }
+    private void checkToWin() {
+        if(howMove>=5) {
+            if((zeroZero.getText() == zeroOne.getText() && zeroZero.getText() == zeroTwo.getText() && zeroZero.getText()!="") ||
+            (oneZero.getText() == oneOne.getText() && oneZero.getText() == oneTwo.getText() && oneZero.getText()!="") ||
+            (twoZero.getText() == twoOne.getText() && twoZero.getText() == twoTwo.getText() && twoZero.getText()!="") ||
+            (zeroZero.getText() == oneZero.getText() && oneZero.getText() == twoZero.getText() && zeroZero.getText()!="") ||
+            (zeroOne.getText() == oneOne.getText() && oneOne.getText() == twoOne.getText() && zeroOne.getText()!="") ||
+            (zeroTwo.getText() == oneTwo.getText() && oneTwo.getText() == twoTwo.getText() && zeroTwo.getText()!="") ||
+            (zeroZero.getText() == oneOne.getText() && oneOne.getText() == twoTwo.getText() && zeroZero.getText()!="") ||
+            (zeroTwo.getText() == oneOne.getText() && oneOne.getText() == twoZero.getText() && zeroTwo.getText()!="")
+                    ){
+                String whoWin = queueS;
+                if(whoWin=="O") {
+                    int pointsX = Integer.parseInt(scoreX.getText());
+                    pointsX++;
+                    scoreX.setText(String.valueOf(pointsX));
+                } else {
+                    int pointsO = Integer.parseInt(scoreO.getText());
+                    pointsO++;
+                    scoreO.setText(String.valueOf(pointsO));
+                }
+
+                resetGame();
+            }
+            else if(howMove==9)
+                resetGame();
+            else
+                howMove++;
+        }
+        else
+            howMove++;
     }
 
     public void clickZeroZero() {
