@@ -1,7 +1,9 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 
 public class Controller {
@@ -54,7 +56,7 @@ public class Controller {
         btn.setDisable(false);
         btn.setText("");
     }
-    private void resetGame() {
+    private void resetRound() {
         resetButton(zeroZero);
         resetButton(zeroOne);
         resetButton(zeroTwo);
@@ -82,16 +84,20 @@ public class Controller {
                     int pointsX = Integer.parseInt(scoreX.getText());
                     pointsX++;
                     scoreX.setText(String.valueOf(pointsX));
+                    DialogWindows.resultWindowInfo("Wygrywa gracz O");
                 } else {
                     int pointsO = Integer.parseInt(scoreO.getText());
                     pointsO++;
                     scoreO.setText(String.valueOf(pointsO));
+                    DialogWindows.resultWindowInfo("Wygrywa gracz O");
                 }
 
-                resetGame();
+                resetRound();
             }
-            else if(howMove==9)
-                resetGame();
+            else if(howMove==9) {
+                DialogWindows.resultWindowInfo("Nikt nie wygrał");
+                resetRound();
+            }
             else
                 howMove++;
         }
@@ -125,5 +131,14 @@ public class Controller {
     }
     public void clickTwoTwo() {
         changeText(twoTwo);
+    }
+    public void resetGame() {
+        if(DialogWindows.confirmResetGame()) {
+            resetRound();
+            queueS = "X";
+            queue.setText("X");
+            scoreO.setText("0");
+            scoreX.setText("0");
+        }
     }
 }

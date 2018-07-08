@@ -64,5 +64,6 @@
       </Label>
       <Label layoutX="131.0" layoutY="79.0" text="Kolej na:" />
       <Label fx:id="queue" layoutX="192.0" layoutY="79.0" text="X" />
+      <Button layoutX="270.0" layoutY="14.0" mnemonicParsing="false" onAction="#resetGame" styleClass="reset" stylesheets="@../../designTicTacToe.css" text="Reset gry" />
    </children>
 </Pane>
